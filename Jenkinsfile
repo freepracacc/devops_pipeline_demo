@@ -22,10 +22,7 @@ echo " "
 echo ".. . . Test Phase Started :: Testing via Automated Scripts :: ......"
 cd ../integration-testing/
 mvn clean verify -P integration-test 
- """ 
-	}
-	stage ('Job2 - Build') {
- 			// Shell build step
+ """		// Shell build step
 sh """ 
 #!/bin/bash
 #- POSTBUILD (PROVISIONING DEPLOYMENT)
@@ -37,19 +34,9 @@ echo " "
 echo " Provisioning Phase Started :: Building Docker Container :: ......"
 cd ../docker/
 sudo docker build -t devops_pipeline_demo . 
- """ 
-	}
-	stage ('Job3 - Build') {
- 			// Shell build step
+ """
+// Unable to convert a build step referring to "com.symantec.cwp.jenkins.plugin.CWPBuilder". Please verify and convert manually if required.		// Shell build step
 sh """ 
-#RUNNING=$(sudo docker inspect --format="{{ .State.Running }}" $CONTAINER 2> /dev/null)
-
-#if [ $? -eq 1 ]; then
-#    echo "$CONTAINER' does not exist."
-#else
-#    sudo docker rm - f $CONTAINER
-#fi
-
 # run your container
 echo " "
 echo " Deployment Phase Started: Building Docker Container : "
